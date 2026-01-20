@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class GasMileage {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        int miles = 0;
+        int gallons = 0;
+        int totalMiles = 0;
+        int totalGallons = 0;
+        
+        System.out.print("Enter miles driven (-1 to quit): ");
+        miles = input.nextInt();
+        
+        while (miles != -1) {
+            System.out.print("Enter gallons used: ");
+            gallons = input.nextInt();
+            
+            totalMiles = totalMiles + miles;
+            totalGallons = totalGallons + gallons;
+            
+            double tripMpg = (double) miles / gallons;
+            System.out.println("MPG for this trip: " + tripMpg);
+            
+            double totalMpg = (double) totalMiles / totalGallons;
+            System.out.println("Combined MPG: " + totalMpg);
+            
+            System.out.print("Enter miles driven (-1 to quit): ");
+            miles = input.nextInt();
+        }
+    }
+}
