@@ -11,7 +11,7 @@ public class CarPool {
         double gasCost = input.nextDouble();
         
         System.out.print("Average miles per gallon");
-        double mpg = input.nextInt();
+        double mpg = input.nextDouble();
         
         System.out.print("Parking fees per day ");
         double parking = input.nextDouble();
