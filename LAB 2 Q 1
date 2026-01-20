@@ -11,7 +11,7 @@ public class CarPool {
         double gasCost = input.nextDouble();
         
         System.out.print("Average miles per gallon: ");
-        int mpg = input.nextInt();
+        double mpg = input.nextInt();
         
         System.out.print("Parking fees per day: ");
         double parking = input.nextDouble();
@@ -19,7 +19,7 @@ public class CarPool {
         System.out.print("Tolls per day: ");
         double tolls = input.nextDouble();
         
-        double dailyCost = (miles / (double) mpg) * gasCost + parking + tolls;
+        double dailyCost = (miles /  mpg) * gasCost + parking + tolls;
         System.out.println("Your daily driving cost is: " + dailyCost);
     }
 }
