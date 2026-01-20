@@ -1,0 +1,41 @@
+class Employee {
+    String firstName;
+    String lastName;
+    double monthlySalary;
+
+    public Employee(String first, String last, double salary) {
+        firstName = first;
+        lastName = last;
+        if (salary > 0.0) monthlySalary = salary;
+    }
+
+    public void setMonthlySalary(double salary) {
+        if (salary > 0.0) monthlySalary = salary;
+    }
+    public double getMonthlySalary() { return monthlySalary; }
+
+    public double getYearlySalary() {
+        return monthlySalary * 12;
+    }
+
+    public void giveRaise() {
+        monthlySalary = monthlySalary * 1.10;
+    }
+}
+
+public class EmployeeTest {
+    public static void main(String[] args) {
+        Employee e1 = new Employee("John", "Doe", 5000.0);
+        Employee e2 = new Employee("Jane", "Smith", 8000.0);
+
+        System.out.println("Yearly Salary 1: " + e1.getYearlySalary());
+        System.out.println("Yearly Salary 2: " + e2.getYearlySalary());
+
+        e1.giveRaise();
+        e2.giveRaise();
+
+        System.out.println("After 10% Raise:");
+        System.out.println("Yearly Salary 1: " + e1.getYearlySalary());
+        System.out.println("Yearly Salary 2: " + e2.getYearlySalary());
+    }
+}
