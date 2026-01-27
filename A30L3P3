@@ -1,0 +1,48 @@
+//program to do multilevel inheriatnce
+import java.util.Scanner;
+abstract class X
+{
+
+    public abstract void sum();
+
+}
+abstract class Y extends X
+{
+
+    public abstract void mul();
+}
+class Z extends Y
+{
+    int i;
+    int j;
+    Z(int i,int j)
+    {
+        this.i=i;
+        this.j=j;
+    }
+    public void sum()
+    {
+        int sum=i+j;
+        System.out.println("sum of "+i+" and "+j+" is "+sum);
+    }
+    public void mul()
+    {
+        int mul=i*j;
+        System.out.println("product of "+i+" and "+j+" is "+mul);
+    }
+}
+class A30L3P3
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter the number 1 :");
+        int i=sc.nextInt();
+        System.out.println("enter the number 2 :");
+        int j=sc.nextInt();
+        Y A=new Z(i,j);
+        A.sum();
+        A.mul();
+        sc.close();
+    }
+}
