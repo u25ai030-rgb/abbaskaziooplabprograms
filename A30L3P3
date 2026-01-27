@@ -1,0 +1,144 @@
+//program to create an abstract class for shapes
+import java.util.Scanner;
+abstract class figure
+{
+    public abstract void calcArea();
+    public abstract void calcVolume();
+
+    public abstract void dispArea();
+    public abstract void dispVolume();
+}
+class sphere extends figure
+{
+    int r;
+    double area;
+    double vol;
+    double PI=3.1402;
+    public sphere(int r)
+    {
+        this.r=r;
+    }
+    public void calcArea()
+    {
+        area=(2*PI*r*r);
+    }
+    public void calcVolume()
+    {
+        vol=(4*PI*r*r*r)/3;
+    }
+    public void dispArea()
+    {
+        System.out.println("the area of sphere :"+area);
+    }
+    public void dispVolume()
+    {
+        System.out.println("the voume  of sphere :"+vol);
+    }
+
+}
+class cone extends figure
+{
+    int r;
+    int h;
+    double area;
+    double vol;
+    double PI=3.1402;
+    public cone(int r,int h)
+    {
+        this.r=r;
+        this.h=h;
+    }
+    public void calcArea()
+    {
+        area=(2*PI*r*h);
+    }
+    public void calcVolume()
+    {
+        vol=(PI*r*r*h)/3;
+    }
+    public void dispArea()
+    {
+        System.out.println("the area of cone  :"+area);
+    }
+    public void dispVolume()
+    {
+        System.out.println("the voume  of cone :"+vol);
+    }
+
+}
+class cylinder extends figure
+{
+    int r;
+    int h;
+    double area;
+    double vol;
+    double PI=3.1402;
+    public cylinder(int r,int h)
+    {
+        this.r=r;
+        this.h=h;
+    }
+    public void calcArea()
+    {
+        area=(2*PI*r*h);
+    }
+    public void calcVolume()
+    {
+        vol=(PI*r*r*h);
+    }
+    public void dispArea()
+    {
+        System.out.println("the area of cylinder  :"+area);
+    }
+    public void dispVolume()
+    {
+        System.out.println("the voume  of cylinder :"+vol);
+    }
+
+}
+class A19L3P2
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter 1)sphere 2) cone 3)cylinder :");
+        int choice=sc.nextInt();
+        switch(choice)
+        {
+            case 1:
+                System.out.println("Enter the radius of sphere:");
+                int sphereR=sc.nextInt();
+                figure A=new sphere(sphereR);
+                A.calcArea();
+                A.dispArea();
+                A.calcVolume();
+                A.dispVolume();
+                break;
+            case 2:
+                System.out.println("Enter the radius of cone :");
+                int coneR=sc.nextInt();
+                System.out.println("Enter the height of cone :");
+                int coneH=sc.nextInt();
+
+                figure B=new cone(coneR,coneH);
+                B.calcArea();
+                B.dispArea();
+                B.calcVolume();
+                B.dispVolume();
+                break;
+            case 3:
+                System.out.println("Enter the radius of cylinder :");
+                int cylindR=sc.nextInt();
+                System.out.println("Enter the height of cylinder :");
+                int cylindH=sc.nextInt();
+
+                figure C=new cylinder(cylindR,cylindH);
+                C.calcArea();
+                C.dispArea();
+                C.calcVolume();
+                C.dispVolume();
+                break;
+        }
+
+    }
+}
