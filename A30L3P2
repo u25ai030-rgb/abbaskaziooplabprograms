@@ -96,7 +96,7 @@ class cylinder extends figure
     }
 
 }
-class A19L3P2
+class A30L3P2
 {
     public static void main(String[] args)
     {
