@@ -1,0 +1,53 @@
+import java.util.Scanner;
+abstract class figure
+{
+    int r;
+    double v=0;
+    double a=0;
+    public void dispArea()
+    {
+        System.out.println("Area :"+a);
+    }
+    public void dispVolume()
+    {
+        System.out.println("Volume :"+v);
+    }
+}
+class cone extends figure
+{
+    double p=3.1428;
+    int r;
+    int s;
+    cone(int r,int s)
+    {
+
+        this.r=r;
+        this.s=s;
+    }
+    public void calcArea()
+    {
+        a=(p*r*s)+(p*r*s);
+    }
+    public void calcVolume()
+    {
+        v=(p*r*r*s)/3;
+    }
+}
+class lab3program1JAVA
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the radius of cone :");
+        int r=sc.nextInt();
+        System.out.println("Enter the height of cone :");
+        int s=sc.nextInt();
+        cone A=new cone(r,s);
+        A.calcArea();
+        A.dispArea();
+        A.calcVolume();
+        A.dispVolume();
+
+
+    }
+}
