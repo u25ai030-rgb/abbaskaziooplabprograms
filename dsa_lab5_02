@@ -128,9 +128,37 @@ int main() {
     head = insertEnd(head, 4);
     head = insertEnd(head, 5);
 
-    printf("Circular List:\n");
+    printf("Original Circular List:\n");
     display(head);
 
+    /* 1. Split circular list */
+    struct Node *h1 = NULL, *h2 = NULL;
+    splitList(head, &h1, &h2);
+
+    printf("\nFirst Half:\n");
+    display(h1);
+
+    printf("Second Half:\n");
+    display(h2);
+
+    /* 2. Check if sorted */
+    printf("\nIs First Half Sorted?\n");
+    if (isSorted(h1))
+        printf("YES\n");
+    else
+        printf("NO\n");
+
+    /* 3. Insert into sorted circular list */
+    printf("\nAfter inserting 3 into First Half:\n");
+    h1 = insertSorted(h1, 3);
+    display(h1);
+
+    /* 4. Reverse circular list */
+    printf("\nReversed First Half:\n");
+    h1 = reverse(h1);
+    display(h1);
+
+    /* 5. Delete every k-th node */
     printf("\nRemaining node after deleting every 2nd node:\n");
     printf("%d\n", deleteKth(head, 2));
 
