@@ -1,0 +1,203 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* ===== DOUBLY LINKED LIST NODE ===== */
+struct Node {
+    int data;
+    struct Node *prev;
+    struct Node *next;
+};
+
+/* Create node */
+struct Node* createNode(int data) {
+    struct Node* n = (struct Node*)malloc(sizeof(struct Node));
+    n->data = data;
+    n->prev = NULL;
+    n->next = NULL;
+    return n;
+}
+
+/* Insert at end */
+struct Node* insertEnd(struct Node* head, int data) {
+    struct Node* n = createNode(data);
+    if (head == NULL)
+        return n;
+
+    struct Node* temp = head;
+    while (temp->next != NULL)
+        temp = temp->next;
+
+    temp->next = n;
+    n->prev = temp;
+    return head;
+}
+
+/* Display list */
+void display(struct Node* head) {
+    while (head != NULL) {
+        printf("%d ⇄ ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+/* 1. Reverse list */
+struct Node* reverse(struct Node* head) {
+    struct Node *temp = NULL, *curr = head;
+
+    while (curr != NULL) {
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+        curr = curr->prev;
+    }
+
+    if (temp != NULL)
+        head = temp->prev;
+
+    return head;
+}
+
+/* 2. Find pair with given sum */
+void findPair(struct Node* head, int sum) {
+    struct Node *first = head, *second = head;
+
+    while (second->next != NULL)
+        second = second->next;
+
+    while (first != second && second->next != first) {
+        int s = first->data + second->data;
+
+        if (s == sum) {
+            printf("(%d, %d)\n", first->data, second->data);
+            first = first->next;
+            second = second->prev;
+        }
+        else if (s < sum)
+            first = first->next;
+        else
+            second = second->prev;
+    }
+}
+
+/* 3. Rotate by k nodes */
+struct Node* rotateByK(struct Node* head, int k) {
+    if (head == NULL) return head;
+
+    struct Node* curr = head;
+    int count = 1;
+
+    while (count < k && curr != NULL) {
+        curr = curr->next;
+        count++;
+    }
+
+    if (curr == NULL)
+        return head;
+
+    struct Node* kthNode = curr;
+
+    while (curr->next != NULL)
+        curr = curr->next;
+
+    curr->next = head;
+    head->prev = curr;
+
+    head = kthNode->next;
+    head->prev = NULL;
+    kthNode->next = NULL;
+
+    return head;
+}
+
+/* 4. Delete all duplicate values */
+void deleteDuplicates(struct Node* head) {
+    struct Node *p, *q;
+
+    for (p = head; p != NULL; p = p->next) {
+        q = p->next;
+        while (q != NULL) {
+            if (p->data == q->data) {
+                struct Node* dup = q;
+                q->prev->next = q->next;
+                if (q->next != NULL)
+                    q->next->prev = q->prev;
+                q = q->next;
+                free(dup);
+            } else
+                q = q->next;
+        }
+    }
+}
+
+/* 5. Maximum sum sublist */
+void maxSumSublist(struct Node* head) {
+    int maxSum = -99999, currSum = 0;
+    struct Node* temp = head;
+
+    while (temp != NULL) {
+        currSum += temp->data;
+        if (currSum > maxSum)
+            maxSum = currSum;
+        if (currSum < 0)
+            currSum = 0;
+        temp = temp->next;
+    }
+    printf("Maximum Sum = %d\n", maxSum);
+}
+
+/* 6. Palindrome check */
+int isPalindrome(struct Node* head) {
+    struct Node *left = head, *right = head;
+
+    while (right->next != NULL)
+        right = right->next;
+
+    while (left != right && right->next != left) {
+        if (left->data != right->data)
+            return 0;
+        left = left->next;
+        right = right->prev;
+    }
+    return 1;
+}
+
+/* 7. Merge two sorted lists */
+struct Node* mergeSorted(struct Node* a, struct Node* b) {
+    if (!a) return b;
+    if (!b) return a;
+
+    if (a->data < b->data) {
+        a->next = mergeSorted(a->next, b);
+        a->next->prev = a;
+        a->prev = NULL;
+        return a;
+    } else {
+        b->next = mergeSorted(a, b->next);
+        b->next->prev = b;
+        b->prev = NULL;
+        return b;
+    }
+}
+
+/* ===== MAIN ===== */
+int main() {
+    struct Node* head = NULL;
+
+    head = insertEnd(head, 1);
+    head = insertEnd(head, 2);
+    head = insertEnd(head, 3);
+    head = insertEnd(head, 2);
+    head = insertEnd(head, 1);
+
+    printf("Original List:\n");
+    display(head);
+
+    printf("\nPalindrome Check:\n");
+    if (isPalindrome(head))
+        printf("List is PALINDROME\n");
+    else
+        printf("List is NOT palindrome\n");
+
+    return 0;
+}
