@@ -193,11 +193,54 @@ int main() {
     printf("Original List:\n");
     display(head);
 
+    /* 1. Reverse */
+    printf("\nReversed List:\n");
+    head = reverse(head);
+    display(head);
+
+    /* Reverse again to restore original order */
+    head = reverse(head);
+
+    /* 2. Find pair with sum */
+    printf("\nPairs with sum = 4:\n");
+    findPair(head, 4);
+
+    /* 3. Rotate by K */
+    printf("\nList after rotating by 2:\n");
+    head = rotateByK(head, 2);
+    display(head);
+
+    /* 4. Delete duplicates */
+    printf("\nAfter deleting duplicates:\n");
+    deleteDuplicates(head);
+    display(head);
+
+    /* 5. Maximum sum sublist */
+    printf("\nMaximum Sum Sublist:\n");
+    maxSumSublist(head);
+
+    /* 6. Palindrome check */
     printf("\nPalindrome Check:\n");
     if (isPalindrome(head))
         printf("List is PALINDROME\n");
     else
         printf("List is NOT palindrome\n");
+
+    /* 7. Merge two sorted lists */
+    struct Node* a = NULL;
+    struct Node* b = NULL;
+
+    a = insertEnd(a, 1);
+    a = insertEnd(a, 3);
+    a = insertEnd(a, 5);
+
+    b = insertEnd(b, 2);
+    b = insertEnd(b, 4);
+    b = insertEnd(b, 6);
+
+    printf("\nMerged Sorted List:\n");
+    struct Node* merged = mergeSorted(a, b);
+    display(merged);
 
     return 0;
 }
